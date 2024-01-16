@@ -48,11 +48,16 @@
 #include <GLTransitionExample_4.h>
 #include <ConveyorBeltExample.h>
 #include <RGB2NV21Sample.h>
-//#include <RGB2I420Sample.h>
-//#include <RGB2I444Sample.h>
-//#include <HardwareBufferExample.h>
+#include <RGB2I420Sample.h>
+#include <RGB2I444Sample.h>
+#include <CopyTextureExample.h>
+#include <BlitFrameBufferExample.h>
+#include <BinaryProgramExample.h>
+#include <Render16BitGraySample.h>
 #include "MyGLRenderContext.h"
 #include "LogUtil.h"
+#include "RenderP010Sample.h"
+//#include "HardwareBufferExample.h"
 
 MyGLRenderContext* MyGLRenderContext::m_pContext = nullptr;
 
@@ -221,12 +226,30 @@ void MyGLRenderContext::SetParamsInt(int paramType, int value0, int value1)
 			case SAMPLE_TYPE_KEY_RGB2NV21:
 				m_pCurSample = new RGB2NV21Sample();
 				break;
-//            case SAMPLE_TYPE_KEY_RGB2I420:
-//                m_pCurSample = new RGB2I420Sample();
-//                break;
-//            case SAMPLE_TYPE_KEY_RGB2I444:
-//                m_pCurSample = new HardwareBufferExample();
-//                break;
+            case SAMPLE_TYPE_KEY_RGB2I420:
+                m_pCurSample = new RGB2I420Sample();
+                break;
+			case SAMPLE_TYPE_KEY_RGB2I444:
+				m_pCurSample = new RGB2I444Sample();
+				break;
+			case SAMPLE_TYPE_KEY_COPY_TEXTURE:
+				m_pCurSample = new CopyTextureExample();
+				break;
+            case SAMPLE_TYPE_KEY_BLIT_FRAME_BUFFER:
+                m_pCurSample = new BlitFrameBufferExample();
+                break;
+			case SAMPLE_TYPE_KEY_BINARY_PROGRAM:
+				m_pCurSample = new BinaryProgramExample();
+				break;
+//			case SAMPLE_TYPE_KEY_HWBuffer:
+//				m_pCurSample = new HardwareBufferExample();
+//				break;
+			case SAMPLE_TYPE_KEY_16BitGray:
+				m_pCurSample = new Render16BitGraySample();
+				break;
+            case SAMPLE_TYPE_KEY_P010:
+                m_pCurSample = new RenderP010Sample();
+                break;
 			default:
 			    m_pCurSample = nullptr;
 				break;
